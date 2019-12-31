@@ -1,6 +1,84 @@
-$primary-color: #444;
+@import 'config';
+
+//everything in css
+//border box allows elements to not affect the border model
+* {
+    box-sizing: border-box;
+}
 
 body {
+    @include background();
     background: $primary-color;
     color: white;
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+//Headings
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 400;
+
+    //affect lg-heading class that h1,h2 or h3 is 
+    &.lg-heading {
+        font-size: 6rem;
+    }
+
+    &.sm-heading {
+        margin-bottom: 2rem;
+        padding: 0.2rem 1rem;
+        background: rgba(lighten($primary-color, $amount: 2), 0.5);
+    }
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+header {
+    //nav button always stays the top
+    position: fixed;
+    //layer order
+    z-index: 2;
+    width: 100%;
+}
+
+.text-secondary {
+    color: $secondary-color;
+}
+
+main {
+    padding: 4rem;
+    height: 100%;
+
+
+    //only affect the icons class in the main tag
+    .icons {
+        margin-top: 1rem;
+
+        a {
+            padding: 0.4rem;
+
+            &:hover {
+                color: $secondary-color;
+
+                @include easeOut();
+            }
+        }
+    }
+
+    //any main that has id of home
+    &#home {
+        //no scroll bar
+        overflow: hidden;
+
+        h1 {
+            margin-top: 20vh;
+        }
+    }
 }
